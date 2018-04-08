@@ -31,7 +31,7 @@ function getEnv() {
     return r ;
 }
 const apis = {
-    prd: "http://192.168.0.109:3000/api/",
+    prd: "http://yycl.jinlins.com/api/",
     // uat: "http://peraudit.wdai.com/api",
     // fat: "http://peraudit.wdai.com/api",
     dev: "http://192.168.92.208:3000/api/",

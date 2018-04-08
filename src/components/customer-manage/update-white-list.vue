@@ -19,8 +19,8 @@
                             <label for="" class="fl">手机号码：</label>{{mobile}}</p>
                     </div>
                     <div class="form-group col-xs-12">
-                        <label>总金额：</label>
-                        <input class="form-control input-sm input-normal" name="amount" v-model="amount" type="text" required>
+                        <label>窗（数量）：</label>
+                        <input class="form-control input-sm input-normal" name="windowNum" v-model="windowNum" type="text" required>
                     </div>
                     <div class="form-group col-xs-12">
                         <label>地址：</label>
@@ -53,7 +53,7 @@ var saveAction = action.rootPath + action.interface.whiteUpdate
     export default {
         props: ['modalProps']
         ,data () {
-            return {'uname': '', 'idcard': '', 'mobile': '', 'minrepayratio': '',currency,'address':'','amount':''}
+            return {'uname': '', 'idcard': '', 'mobile': '', 'minrepayratio': '',currency,'address':'','windowNum':''}
         }
         ,components: {saveBackBtn}
 
@@ -65,7 +65,7 @@ var saveAction = action.rootPath + action.interface.whiteUpdate
                     vm.uname = res.data.uname
                     vm.idcard = res.data.idcard
                     vm.mobile = res.data.mobile
-                    vm.amount = res.data.amount
+                    vm.windowNum = res.data.windowNum
                     vm.address = res.data.address
                     vm.minrepayratio = vm.currency.mul(res.data.minrepayratio,100)
                 }
@@ -79,7 +79,7 @@ var saveAction = action.rootPath + action.interface.whiteUpdate
             //保存
             doSave () {
                 if ($('#updateWhite').valid()){
-                    let _params = {'id': this.modalProps.id,'address':this.address,'amount':this.amount ? this.amount :''}
+                    let _params = {'id': this.modalProps.id,'address':this.address,'windowNum':this.windowNum ? this.windowNum :''}
                     this.post(saveAction, _params, function (res) {
                         if (res.code == 0) {
                             eventHub.$emit('show-alert', '保存成功！','refresh');

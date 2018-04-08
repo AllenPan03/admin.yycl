@@ -21,7 +21,9 @@ const whiteSchema = new Schema({
   uname: String,
   address: String,
   mobile: String,
-  amount: String
+  amount: String,
+  windowNum: String,
+  createTime: String
 })
 
 const clothSchema = new Schema({
@@ -29,10 +31,10 @@ const clothSchema = new Schema({
   source: String,
   mobile: String,
   bankCard: String,
-  uname:String,
-  price:String,
-  length:String,
-  deliveryTime:String,
+  uname: String,
+  price: String,
+  length: String,
+  deliveryTime: String,
 })
 
 

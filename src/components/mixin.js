@@ -138,9 +138,17 @@ export default {
             if (url == 'undefined' || url == '' || typeof (params) != 'object') return;
             //打开进度条
             $('#loading').show();
+            const newData = params;
+            //处理入参为空的情况
+            for (const key in newData) {
+                newData[key] = $.trim(newData[key]);
+                if (newData[key] === undefined || newData[key] == null || newData[key] === '') {
+                    delete newData[key];
+                }
+            }
             this.$http.post(url, params, {
-                headers: { "X-Requested-With": "XMLHttpRequest" }, 
-                emulateJSON: true, 
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+                emulateJSON: true,
                 //credentials: true //针对指定域名
             }).then((response) => {
                 //关闭进度条
@@ -266,6 +274,9 @@ export default {
          *@param{Object}time
          */
         , timeNormal(time) {
+            if (!+time) {
+                return "";
+            }
             var now = new Date(parseInt(time));
             var yy = now.getFullYear(); //年
             var mm = now.getMonth() + 1; //月

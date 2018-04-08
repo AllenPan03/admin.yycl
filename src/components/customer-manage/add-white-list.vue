@@ -26,7 +26,7 @@
                   <label class="control-label">
                     窗数量（个）：
                   </label>
-                  <input class="form-control input-sm input-normal" name="amount" v-model="amount"  type="text" required>
+                  <input class="form-control input-sm input-normal" name="windowNum" v-model="windowNum"  type="text" required>
                 </div>
                 <div class="form-group col-xs-12 hideP">
                   <label class="control-label">
@@ -63,7 +63,7 @@ export default {
       validterm: "",
       remark: "",
       minRepayRatio: "",
-      amount: ""
+      windowNum: ""
     };
   },
   computed: {
@@ -74,7 +74,7 @@ export default {
         mobile: this.mobile,
         address: this.address,
         remark: this.remark,
-        amount: this.amount
+        windowNum: this.windowNum
       };
     }
   },

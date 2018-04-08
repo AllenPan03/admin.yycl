@@ -26,16 +26,16 @@
                 <tr v-for="(item, index) in reDataList">
                   <td>{{item.uname}}</td>
                   <td>{{item.mobile}}</td>
-                  <td>4</td>
+                  <td>{{item.windowNum}}</td>
                   <!-- <td>{{fMoney(item.amount)}}</td> -->
                   <td>{{item.address}}</td>
-                  <td>2018-03-18 19:24:00</td>
+                  <td>{{timeNormal(item.createTime)}}</td>
                   <td>
                     <a href="javascript:;" @click="goDetail(item._id)">查看</a> 
                   </td>
                   <td>
                       <a href="javascript:;" @click="updateWhitelist(item._id)">修改</a>  |
-                      <a href="javascript:;" @click="updateWhitelist(item._id)">删除</a> 
+                      <a href="javascript:;" @click="onDelet(item._id)">删除</a> 
                   </td>
                 </tr>
             </tbody>
@@ -61,6 +61,7 @@ import Vue from "vue";
 import queryBtnGroup from "../query-btn-group/query-btn-group.vue";
 import nameCondition from "../form-group/name-condition.vue";
 import mobileCondition from "../form-group/mobile-condition.vue";
+import alertPrompt from "../basic/alert/alert-prompt.vue";
 import formGroup from "../form-group/form-group.vue";
 import page from "../basic/page/page.vue";
 
@@ -110,6 +111,7 @@ export default {
     page,
     addWhitelist,
     removeWhitelist,
+    alertPrompt,
     updateWhitelist
   },
   mixins: [mixins],
@@ -118,6 +120,7 @@ export default {
   },
   activated() {
     eventHub.$on("do-reload", this.doReload);
+    eventHub.$on("make-true", this.doDelete);
   },
   deactivated() {
     eventHub.$off("do-reload", this.doReload);
@@ -132,9 +135,23 @@ export default {
     doReload() {
       this.doQuery();
     },
-    //移除名单
-    removeWhitelist(id) {
-      eventHub.$emit("open-modal", removeWhitelist, { id: id });
+    //删除操作
+    onDelet(id) {
+      eventHub.$emit("open-modal", alertPrompt, {
+        msg: "确认删除该客户信息吗？",
+        id: id
+      });
+      this.id = id;
+    },
+    doDelete() {
+      let deleteUrl = action.rootPath + action.interface.whiteDelete;
+      this.post(deleteUrl, { id: this.id }, function(res) {
+        if (res.code == 0) {
+          eventHub.$emit("show-alert", "删除成功！", "refresh");
+        } else {
+          eventHub.$emit("show-alert", res.message);
+        }
+      });
     },
     //更新名单
     updateWhitelist(id) {
@@ -160,6 +177,7 @@ export default {
   beforeDestroy() {
     //注销组件前，关闭所有弹窗
     eventHub.$emit("close-all-modal");
+    eventHub.$off("make-true", this.doDelete);
   }
 };
 </script>

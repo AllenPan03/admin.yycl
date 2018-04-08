@@ -43,7 +43,7 @@ router.post('/api/login', (req, res) => {
 })
 //客户列表
 router.all('/api/white/query', (req, res) => {
-  const param = req.body.mobile ? { mobile: req.body.mobile } : null;
+  const param = (req.body.mobile || req.body.uname) ? { $or: [{ uname: req.body.uname }, { mobile: req.body.mobile }] } : null;
   db.White.find(param, '', (err, doc) => {
     if (err) {
       console.log(err)
@@ -80,7 +80,8 @@ router.post('/api/white/update', (req, res) => {
   const _id = req.body.id
   const white = {
     amount: req.body.amount,
-    address: req.body.address
+    address: req.body.address,
+    windowNum: req.body.windowNum
   }
   db.White.findByIdAndUpdate(_id, white, (err, doc) => {
     if (err) {
@@ -98,23 +99,20 @@ router.post('/api/white/update', (req, res) => {
 })
 //新增名单
 router.post('/api/white/add', (req, res) => {
+  let time = new Date().getTime();
   const white = {
-    amount: req.body.amount,
+    windowNum: req.body.windowNum,
     uname: req.body.uname,
     mobile: req.body.mobile,
     address: req.body.address,
+    createTime : time
   }
   new db.White(white).save((err, doc) => {
     if (err) {
       console.log(err)
-      res.send({ code: 111114, message: '参数错误' })
+      res.send(errorData)
     } else if (doc) {
-      const data = {
-        code: 0,
-        data: true,
-        message: '成功'
-      }
-      res.send(data)
+      res.send(successData)
     }
   })
 });

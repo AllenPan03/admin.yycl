@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group col-xs-12 hideP">
                   <label class="control-label">
-                    总金额：
+                    窗数量（个）：
                   </label>
                   <input class="form-control input-sm input-normal" name="amount" v-model="amount"  type="text" required>
                 </div>

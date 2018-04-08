@@ -17,6 +17,7 @@
               <th>窗（数量）</th>
               <!-- <th>交易金额</th> -->
               <th>客户地址</th>
+              <th>创建时间</th>
               <th>详情</th>
               <th>操作</th>
             </tr>
@@ -28,6 +29,7 @@
                   <td>4</td>
                   <!-- <td>{{fMoney(item.amount)}}</td> -->
                   <td>{{item.address}}</td>
+                  <td>2018-03-18 19:24:00</td>
                   <td>
                     <a href="javascript:;" @click="goDetail(item._id)">查看</a> 
                   </td>

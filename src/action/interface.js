@@ -31,10 +31,10 @@ function getEnv() {
     return r ;
 }
 const apis = {
-    prd: "http://192.168.92.229:3000/api/",
+    prd: "http://192.168.0.109:3000/api/",
     // uat: "http://peraudit.wdai.com/api",
     // fat: "http://peraudit.wdai.com/api",
-    dev: "http://192.168.92.229:3000/api/",
+    dev: "http://192.168.92.208:3000/api/",
 };
 var action = {
     rootPath: apis[env],
@@ -63,6 +63,15 @@ var action = {
         whiteDelete: 'white/delete',
         //更新客户接口
         whiteUpdate: 'white/update',
+        //布料列表接口
+        clothQuery: 'cloth/query',
+        //新增布料列表接口
+        clothAdd: 'cloth/add',
+        //更新布料列表接口
+        clothUpdate: 'cloth/update',
+        //删除布料列表接口
+        clothDelete: 'cloth/delete'
+
     }
 };
 export default action

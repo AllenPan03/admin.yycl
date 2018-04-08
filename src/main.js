@@ -10,6 +10,9 @@ import login from './components/login/login.vue'
 import customerList from './components/customer-manage/customer-manage.vue' 
 import whiteList from './components/white-list-manage/white-list-manage.vue' 
 import customerDetail from './components/customer-manage/customer-detail.vue' 
+import clothManage from './components/cloth-manage/cloth-manage.vue' 
+import stockManage from './components/stock-manage/stock-manage.vue' 
+import calculate from './components/calculate/calculate.vue' 
 
 //安装路由
 Vue.use(VueRouter)
@@ -22,6 +25,13 @@ const routes = [
     ,{ path: '/customerList', component: customerList, name: 'customerList'}
     //客户详情
     ,{ path: '/customerDetail', component: customerDetail, name: 'customerDetail'}
+    //布料管理
+    ,{ path: '/clothManage', component: clothManage, name: '布料管理'}
+    //进货单管理
+    ,{ path: '/stockManage', component: stockManage, name: '进货单管理'}
+    //价格计算器
+    ,{ path: '/calculate', component: calculate, name: '进货单管理'}
+    
 ]
 const router = new VueRouter({
     routes

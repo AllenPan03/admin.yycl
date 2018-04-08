@@ -15,7 +15,14 @@ const menuData = {
             {
                 "name": "布料管理",
                 "description": "布料管理",
-                "data": "/customerList",
+                "data": "/clothManage",
+                "attribute": "icon-yonghuguanlixianxing#icon-kehuguanli",
+                "type": 1
+            },
+            {
+                "name": "价格计算器",
+                "description": "价格计算器",
+                "data": "/calculate",
                 "attribute": "icon-yonghuguanlixianxing#icon-kehuguanli",
                 "type": 1
             }

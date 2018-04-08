@@ -24,18 +24,23 @@ const whiteSchema = new Schema({
   amount: String
 })
 
-const testSchema = new Schema({
-  uname: String,
-  address: String,
+const clothSchema = new Schema({
+  name: String,
+  source: String,
   mobile: String,
-  amount: String
+  bankCard: String,
+  uname:String,
+  price:String,
+  length:String,
+  deliveryTime:String,
 })
+
 
 const Models = {
   User: mongoose.model('User', userSchema),
   Article: mongoose.model('Article', articleSchema),
   White: mongoose.model('White', whiteSchema),
-  Test: mongoose.model('Test', testSchema),
+  Cloth: mongoose.model('Cloth', clothSchema),
   initialized: false
 }
 

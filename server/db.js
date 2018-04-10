@@ -61,7 +61,7 @@ const initialize = function () {
   })
 }
 
-mongoose.connect('mongodb://localhost/YYCL')
+mongoose.connect('mongodb://192.168.92.208/YYCL')
 // mongoose.set('debug', true)
 
 const db = mongoose.connection
